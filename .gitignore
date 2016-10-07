@@ -1,5 +1,5 @@
 *.retry
 /tmp
-/library
 requirements.txt
 /images
+/library
