@@ -1,5 +1,5 @@
-/.vagrant
 *.retry
-*.bin
 /tmp
-jon*
+/library
+requirements.txt
+/images
