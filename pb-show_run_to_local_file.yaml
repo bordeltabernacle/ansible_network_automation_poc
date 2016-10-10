@@ -1,7 +1,7 @@
 ---
 - name: Show Run To File
   gather_facts: no
-  hosts: routers
+  hosts: net_devices
   tasks:
 
     - name: execute show run command

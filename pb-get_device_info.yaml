@@ -2,7 +2,7 @@
 
 - name: Get Device Information
   gather_facts: no
-  hosts: all
+  hosts: net_devices
   tasks:
 
     - name: Send Show Commands
