@@ -27,13 +27,16 @@
         dest: ../../tmp/{{ ansible_host }}.txt
 
 
-- name: Prepare Serial Number Report
+- name: Move Show Files
   hosts: 127.0.0.1
   connection: local
   tasks:
 
+    - name: Ensure Show Files Dir does not already exist
+      file: path=./show_files state=absent
+
     - name: Move Report into Shared Reports Directory
-      command: mv ../../tmp/{{ ansible_host }}.txt ./show_files/{{ ansible_host }}.txt
+      command: mv ../../tmp/ ./show_files
 
     - name: Remove tmp Directory
       file: path=../../tmp state=absent
