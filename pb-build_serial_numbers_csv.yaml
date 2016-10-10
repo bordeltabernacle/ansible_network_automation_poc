@@ -80,6 +80,6 @@
     - name: Move Report into Shared Reports Directory
       command: mv ../../tmp/serial_numbers.csv ./reports/serial_numbers.csv
 
-    - name: Clean Up tmp Directory
+    - name: Remove tmp Directory
       file: path=../../tmp state=absent
 
