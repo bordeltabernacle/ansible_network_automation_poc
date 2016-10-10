@@ -12,7 +12,6 @@
 - name: Configure Replace Configurations
   gather_facts: no
   hosts: routers
-
   tasks:
 
     - name: Generate Configuration Files
@@ -21,7 +20,7 @@
         dest: ../../tmp/{{ ansible_host }}.cfg
 
     - name: Move Configs into Configs Directory
-      command: mv ../../tmp/{{ ansible_host }}.cfg ./configs
+      command: mv ../../tmp/{{ ansible_host }}.cfg ./files/configs
 
     - name: Save Pre-Changes Config
       ntc_save_config:
@@ -29,11 +28,11 @@
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
-        local_file: pre-backups/{{ ansible_host }}-PRE.txt
+        local_file: files/pre-backups/{{ ansible_host }}-PRE.txt
 
     - name: Secure Copy Configs to Devices
       ntc_file_copy:
-        local_file: configs/{{ ansible_host }}.cfg
+        local_file: files/configs/{{ ansible_host }}.cfg
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
@@ -55,7 +54,7 @@
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
-        local_file: post-backups/{{ ansible_host }}-POST.txt
+        local_file: files/post-backups/{{ ansible_host }}-POST.txt
 
     - name: Remove tmp Directory
       file: path=../../tmp state=absent

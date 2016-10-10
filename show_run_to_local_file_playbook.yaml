@@ -32,11 +32,12 @@
   connection: local
   tasks:
 
-    - name: Ensure Show Files Dir does not already exist
-      file: path=./show_files state=absent
+    - name: Ensure Show Files Directory is empty
+      file: path=./files/show_files state=absent
+      file: path=./files/show_files state=directory
 
     - name: Move Report into Shared Reports Directory
-      command: mv ../../tmp/ ./show_files
+      command: mv ../../tmp/ ./files/show_files
 
     - name: Remove tmp Directory
       file: path=../../tmp state=absent

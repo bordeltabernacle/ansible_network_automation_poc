@@ -12,3 +12,11 @@ switches
 
 [localhost]
 127.0.0.1
+
+[everyone:children]
+routers
+switches
+localhost
+
+[everyone:vars]
+local_home: "{{ lookup('env','HOME') }}"

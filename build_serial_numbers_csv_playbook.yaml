@@ -69,7 +69,7 @@
   tasks:
 
     - name: Copy Header File into tmp Directory
-      command: cp ./files/001-header.txt ../../tmp
+      command: cp ./files/utils/001-serial_numbers_header.txt ../../tmp
 
     - name: Assemble Individual Device Reports
       assemble:
@@ -78,7 +78,7 @@
       run_once: true
 
     - name: Move Report into Shared Reports Directory
-      command: mv ../../tmp/serial_numbers.csv ./reports/serial_numbers.csv
+      command: mv ../../tmp/serial_numbers.csv ./files/reports/serial_numbers.csv
 
     - name: Remove tmp Directory
       file: path=../../tmp state=absent

@@ -9,4 +9,4 @@
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
-        local_file: running-configs/{{ inventory_hostname }}-running-config.cfg
+        local_file: files/running-configs/{{ inventory_hostname }}-running-config.cfg
