@@ -1,8 +1,10 @@
 ---
+
 - name: Get Device Information
   gather_facts: no
   hosts: all
   tasks:
+
     - name: Send Show Commands
       ios_command:
         provider: "{{ provider }}"

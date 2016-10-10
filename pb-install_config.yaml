@@ -12,7 +12,7 @@
         dest: ../tmp/{{ ansible_host }}.cfg
 
     - name: Move Config into Configs Directory
-      command: mv /home/vagrant/tmp/{{ ansible_host }}.cfg /home/vagrant/shared/configs
+      command: mv ../../tmp/{{ ansible_host }}.cfg ./configs
 
     - name: Save Pre-Changes Config
       ntc_save_config:
@@ -40,7 +40,4 @@
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
         local_file: post-backups/{{ ansible_host }}-POST.txt
-
-
-
 

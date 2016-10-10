@@ -1,4 +1,5 @@
 ---
+
 - name: Retrieve ROUTERS Device Information
   gather_facts: no
   hosts: routers
@@ -20,12 +21,10 @@
       set_fact:
         serial_numbers: "{{ info.stdout[1].split()[7] }}"
 
-    - debug: msg="{{ hostname }} {{ serial_numbers }}"
-
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: ./output/{{ inventory_hostname }}.csv
+        dest: ./csv_output/{{ inventory_hostname }}.csv
 
 
 - name: Retrieve SWITCHES Device Information
@@ -49,12 +48,10 @@
       set_fact:
         serial_numbers: "{{ info.stdout[1].split()[4::5] | join('\n,') }}"
 
-    - debug: msg="{{ hostname }} {{ serial_numbers }}"
-
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: ./output/{{ inventory_hostname }}.csv
+        dest: ./csv_output/{{ inventory_hostname }}.csv
 
 
 - name: Prepare Serial Number Report
@@ -64,9 +61,10 @@
 
     - name: Assemble Individual Device Reports
       assemble:
-        src: './output/'
-        dest: '../tmp/serial_numbers.csv'
+        src: './csv_output/'
+        dest: '../../tmp/serial_numbers.csv'
       run_once: true
 
-    - name: Copy Report into Shared Reports Directory
-      command: cp /home/vagrant/tmp/serial_numbers.csv /home/vagrant/shared/reports
+    - name: Move Report into Shared Reports Directory
+      command: mv ../../tmp/serial_numbers.csv ./reports
+

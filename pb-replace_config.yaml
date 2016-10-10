@@ -8,10 +8,10 @@
     - name: Generate Configuration Files
       template:
         src: changes-OFF.cfg.j2
-        dest: ../tmp/{{ ansible_host }}.cfg
+        dest: ../../tmp/{{ ansible_host }}.cfg
 
     - name: Move Configs into Configs Directory
-      command: mv /home/vagrant/tmp/{{ ansible_host }}.cfg /home/vagrant/shared/configs
+      command: mv ../../tmp/{{ ansible_host }}.cfg ./configs
 
     - name: Save Pre-Changes Config
       ntc_save_config:
