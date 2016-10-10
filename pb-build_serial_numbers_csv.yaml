@@ -68,8 +68,8 @@
   connection: local
   tasks:
 
-    - name: Move Header File into tmp Directory
-      command: mv ./files/001-header.txt ../../tmp
+    - name: Copy Header File into tmp Directory
+      command: cp ./files/001-header.txt ../../tmp
 
     - name: Assemble Individual Device Reports
       assemble:
