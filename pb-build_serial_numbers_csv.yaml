@@ -1,5 +1,14 @@
 ---
 
+- name: Create tmp Directory
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+
+    - name: Create tmp Directory
+      file: path=../../tmp state=directory
+
+
 - name: Retrieve ROUTERS Device Information
   gather_facts: no
   hosts: routers
@@ -69,8 +78,8 @@
       run_once: true
 
     - name: Move Report into Shared Reports Directory
-      command: mv ../../tmp/serial_numbers.csv ./reports
+      command: mv ../../tmp/serial_numbers.csv ./reports/serial_numbers.csv
 
-    - name: Clean tmp Directory
-      command: rm -rf ../../tmp/*
+    - name: Clean Up tmp Directory
+      file: path=../../tmp state=absent
 
