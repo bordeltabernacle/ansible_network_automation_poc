@@ -24,7 +24,7 @@
     - name: write output to file
       template:
         src: output.txt.j2
-        dest: ../../tmp/{{ ansible_host }}.txt
+        dest: {{ local_home }}/tmp/{{ ansible_host }}.txt
 
 
 - name: Move Show Files
@@ -37,8 +37,8 @@
       file: path=./files/show_files state=directory
 
     - name: Move Report into Shared Reports Directory
-      command: mv ../../tmp/ ./files/show_files
+      command: mv {{ local_home }}/tmp/ ./files/show_files
 
     - name: Remove tmp Directory
-      file: path=../../tmp state=absent
+      file: path={{ local_home }}/tmp state=absent
 

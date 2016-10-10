@@ -6,7 +6,7 @@
   tasks:
 
     - name: Create tmp Directory
-      file: path=../../tmp state=directory
+      file: path={{ local_home }}/tmp state=directory
 
 
 - name: Retrieve ROUTERS Device Information
@@ -33,7 +33,7 @@
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: ../../tmp/{{ inventory_hostname }}.csv
+        dest: {{ local_home }}/tmp/{{ inventory_hostname }}.csv
 
 
 - name: Retrieve SWITCHES Device Information
@@ -60,7 +60,7 @@
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: ../../tmp/{{ inventory_hostname }}.csv
+        dest: {{ local_home }}/tmp/{{ inventory_hostname }}.csv
 
 
 - name: Prepare Serial Number Report
@@ -73,13 +73,13 @@
 
     - name: Assemble Individual Device Reports
       assemble:
-        src: '../../tmp/'
-        dest: '../../tmp/serial_numbers.csv'
+        src: '{{ local_home }}/tmp/'
+        dest: '{{ local_home }}/tmp/serial_numbers.csv'
       run_once: true
 
     - name: Move Report into Shared Reports Directory
-      command: mv ../../tmp/serial_numbers.csv ./files/reports/serial_numbers.csv
+      command: mv {{ local_home }}/tmp/serial_numbers.csv ./files/reports/serial_numbers.csv
 
     - name: Remove tmp Directory
-      file: path=../../tmp state=absent
+      file: path={{ local_home }}/tmp state=absent
 

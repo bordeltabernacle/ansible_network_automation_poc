@@ -6,7 +6,7 @@
   tasks:
 
     - name: Create tmp Directory
-      file: path=../../tmp state=directory
+      file: path={{ local_home }}/tmp state=directory
 
 
 - name: Configure Replace Configurations
@@ -17,10 +17,10 @@
     - name: Generate Configuration Files
       template:
         src: changes-OFF.cfg.j2
-        dest: ../../tmp/{{ ansible_host }}.cfg
+        dest: {{ local_home }}/tmp/{{ ansible_host }}.cfg
 
     - name: Move Configs into Configs Directory
-      command: mv ../../tmp/{{ ansible_host }}.cfg ./files/configs
+      command: mv {{ local_home }}/tmp/{{ ansible_host }}.cfg ./files/configs
 
     - name: Save Pre-Changes Config
       ntc_save_config:
@@ -57,5 +57,5 @@
         local_file: files/post-backups/{{ ansible_host }}-POST.txt
 
     - name: Remove tmp Directory
-      file: path=../../tmp state=absent
+      file: path={{ local_home }}/tmp state=absent
 

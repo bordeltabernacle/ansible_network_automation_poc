@@ -19,4 +19,4 @@ switches
 localhost
 
 [everyone:vars]
-local_home: "{{ lookup('env','HOME') }}"
+local_home="{{ lookup('env','HOME') }}"
