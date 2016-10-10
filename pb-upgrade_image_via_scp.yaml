@@ -1,4 +1,5 @@
 ---
+
 - name: upgrade image via scp
   gather_facts: no
   hosts: routers

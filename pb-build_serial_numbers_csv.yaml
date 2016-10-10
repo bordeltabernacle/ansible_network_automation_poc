@@ -24,7 +24,7 @@
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: ./csv_output/{{ inventory_hostname }}.csv
+        dest: ../../tmp/{{ inventory_hostname }}.csv
 
 
 - name: Retrieve SWITCHES Device Information
@@ -51,7 +51,7 @@
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: ./csv_output/{{ inventory_hostname }}.csv
+        dest: ../../tmp/{{ inventory_hostname }}.csv
 
 
 - name: Prepare Serial Number Report
@@ -59,12 +59,18 @@
   connection: local
   tasks:
 
+    - name: Move Header File into tmp Directory
+      command: mv ./files/001-header.txt ../../tmp
+
     - name: Assemble Individual Device Reports
       assemble:
-        src: './csv_output/'
+        src: '../../tmp/'
         dest: '../../tmp/serial_numbers.csv'
       run_once: true
 
     - name: Move Report into Shared Reports Directory
       command: mv ../../tmp/serial_numbers.csv ./reports
+
+    - name: Clean tmp Directory
+      command: rm -rf ../../tmp/*
 
