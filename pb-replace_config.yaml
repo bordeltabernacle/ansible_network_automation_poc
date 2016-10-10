@@ -1,4 +1,14 @@
 ---
+
+- name: Create tmp Directory
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+
+    - name: Create tmp Directory
+      file: path=../../tmp state=directory
+
+
 - name: Configure Replace Configurations
   gather_facts: no
   hosts: routers
@@ -46,4 +56,7 @@
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
         local_file: post-backups/{{ ansible_host }}-POST.txt
+
+    - name: Remove tmp Directory
+      file: path=../../tmp state=absent
 
