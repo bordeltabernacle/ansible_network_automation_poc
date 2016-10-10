@@ -5,5 +5,5 @@
   tasks:
 
     - name: Move Report into Shared Reports Directory
-      command: mv {{ local_home }}/tmp/serial_numbers.csv ./files/reports/serial_numbers.csv
+      command: mv {{ local_home }}/tmp/test.txt ./files/reports/serial_numbers.csv
 
