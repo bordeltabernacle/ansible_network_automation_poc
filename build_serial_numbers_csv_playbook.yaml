@@ -6,7 +6,7 @@
   tasks:
 
     - name: Create tmp Directory
-      file: path={{ local_home }}/tmp state=directory
+      file: path={{ local_home }}/tmp state=directory owner=vagrant group=vagrant mode=0755
 
 
 - name: Retrieve ROUTERS Device Information
@@ -33,7 +33,7 @@
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: {{ local_home }}/tmp/{{ inventory_hostname }}.csv
+        dest: "{{ local_home }}/tmp/{{ inventory_hostname }}.csv"
 
 
 - name: Retrieve SWITCHES Device Information
@@ -60,7 +60,7 @@
     - name: Write Output to File
       template:
         src: serial_numbers.csv.j2
-        dest: {{ local_home }}/tmp/{{ inventory_hostname }}.csv
+        dest: "{{ local_home }}/tmp/{{ inventory_hostname }}.csv"
 
 
 - name: Prepare Serial Number Report
