@@ -18,10 +18,10 @@
     - name: Generate Configuration Files
       template:
         src: changes-OFF.cfg.j2
-        dest: {{ local_home }}/tmp/{{ ansible_host }}.cfg
+        dest: "{{ local_home }}/tmp/{{ ansible_host }}.cfg"
 
     - name: Move Config into Configs Directory
-      command: mv {{ local_home }}/tmp/{{ ansible_host }}.cfg ./files/configs
+      command: mv "{{ local_home }}/tmp/{{ ansible_host }}.cfg" ./files/configs
 
     - name: Save Pre-Changes Config
       ntc_save_config:

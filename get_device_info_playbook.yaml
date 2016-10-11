@@ -12,6 +12,5 @@
           - show inventory
           - sh run | inc hostname
           - sh ver | inc image
-          - sh ip int brief
       register: info
     - debug: var=info.stdout_lines
