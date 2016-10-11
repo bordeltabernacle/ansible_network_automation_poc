@@ -7,14 +7,16 @@
       image: "{{ image_two }}"
   tasks:
 
-    - ntc_save_config:
+    - name: Save Running Config Pre-Changes
+      ntc_save_config:
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
         local_file: files/backups/pre-changes/{{ inventory_hostname }}.txt
 
-    - ntc_file_copy:
+    - name: Copy Image to Devices via SCP
+      ntc_file_copy:
         local_file: files/cisco_images/{{ image }}
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
@@ -22,21 +24,24 @@
         host: "{{ ansible_host }}"
         file_system: "flash0:"
 
-    - ntc_install_os:
+    - name: Set New Image on Device
+      ntc_install_os:
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
         system_image_file: "{{ image }}"
 
-    - ntc_save_config:
+    - name: Save Running Config Post-Changes
+      ntc_save_config:
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
         local_file: files/backups/post-changes/{{ inventory_hostname }}.txt
 
-    - ntc_reboot:
+    - name: Set Devices to Reboot in 1 Minute
+      ntc_reboot:
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
