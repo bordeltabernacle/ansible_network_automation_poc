@@ -35,11 +35,8 @@
     - name: Delete Show Files Directory
       file: path=./files/show_files state=absent
 
-    - name: Recreate Empty Show Files Directory
-      file: path=./files/show_files state=directory
-
     - name: Move Show Files into show_files Directory
-      command: mv {{ local_home }}/tmp/ ./files/show_files
+      command: mv {{ local_home }}/tmp ./files/show_files
 
     - name: Remove tmp Directory
       file: path={{ local_home }}/tmp state=absent
