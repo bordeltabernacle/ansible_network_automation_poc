@@ -36,7 +36,7 @@
       file: path=./files/show_files state=absent
       file: path=./files/show_files state=directory
 
-    - name: Move Report into Shared Reports Directory
+    - name: Move Show Files into show_files Directory
       command: mv {{ local_home }}/tmp/ ./files/show_files
 
     - name: Remove tmp Directory
