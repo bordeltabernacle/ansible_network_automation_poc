@@ -1,0 +1,36 @@
+---
+- name: Upgrade Image via TFTP
+  gather_facts: no
+  hosts: routers
+  vars:
+      image: "{{ image_two }}"
+  tasks:
+
+    - name: Suppress Confirmation Alerts
+      ios_config:
+        provider: "{{ provider }}"
+        lines: ['file prompt quiet']
+
+    - name: Copy Image via TFTP
+      ios_command:
+        provider: "{{ provider }}"
+        commands:
+          - copy tftp://192.168.0.5/{{ image }} flash0:/
+
+    - name: Update Boot System
+      ios_config:
+        provider: "{{ provider }}"
+        lines: ['boot system flash0:{{ image }}']
+
+    - name: Write Changes to Memory
+      ios_command:
+        provider: "{{ provider }}"
+        commands:
+          - wr mem
+
+    - name: Reload Device
+      ios_command:
+        provider: "{{ provider }}"
+        commands:
+          - reload
+
