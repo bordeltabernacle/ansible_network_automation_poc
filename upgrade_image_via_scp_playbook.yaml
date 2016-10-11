@@ -3,6 +3,8 @@
 - name: upgrade image via scp
   gather_facts: no
   hosts: routers
+  vars:
+      image: {{ image_two }}
   tasks:
 
     - ntc_save_config:
@@ -13,7 +15,7 @@
         local_file: pre-backups/{{ inventory_hostname }}-pre.txt
 
     - ntc_file_copy:
-        local_file: ./images/{{ image_two }}
+        local_file: files/cisco_images/{{ image }}
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
@@ -25,7 +27,7 @@
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
         host: "{{ ansible_host }}"
-        system_image_file: "{{ image_two }}"
+        system_image_file: "{{ image }}"
 
     - ntc_save_config:
         platform: "{{ platform }}"

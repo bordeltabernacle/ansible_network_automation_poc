@@ -1,6 +1,6 @@
 ---
-image_one: c2900-IMAGE-ONE.SPA.154-3.M3.bin
-image_two: c2900-IMAGE-TWO.SPA.151-4.M1.bin
+image_one: c2900-universalk9_IMAGE_ONE.SPA.151-4.M1.bin
+image_two: c2900-universalk9_IMAGE_TWO.SPA.151-4.M1.bin
 platform: cisco_ios_ssh
 dev_os: ios
 ansible_connection: local
