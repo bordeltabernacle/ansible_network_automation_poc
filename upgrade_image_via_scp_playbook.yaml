@@ -4,7 +4,7 @@
   gather_facts: no
   hosts: routers
   vars:
-      image: {{ image_two }}
+      image: "{{ image_two }}"
   tasks:
 
     - ntc_save_config:
