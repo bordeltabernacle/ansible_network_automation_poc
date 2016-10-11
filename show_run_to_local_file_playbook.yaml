@@ -24,7 +24,7 @@
     - name: write output to file
       template:
         src: output.txt.j2
-        dest: {{ local_home }}/tmp/{{ ansible_host }}.txt
+        dest: "{{ local_home }}/tmp/{{ ansible_host }}.txt"
 
 
 - name: Move Show Files
@@ -32,8 +32,10 @@
   connection: local
   tasks:
 
-    - name: Ensure Show Files Directory is empty
+    - name: Delete Show Files Directory
       file: path=./files/show_files state=absent
+
+    - name: Recreate Empty Show Files Directory
       file: path=./files/show_files state=directory
 
     - name: Move Show Files into show_files Directory
