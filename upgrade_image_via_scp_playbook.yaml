@@ -17,7 +17,7 @@
 
     - name: Copy Image to Devices via SCP
       ntc_file_copy:
-        local_file: files/cisco_images/{{ image }}
+        local_file: ./files/cisco_images/{{ image }}
         platform: "{{ platform }}"
         username: "{{ ansible_user }}"
         password: "{{ ansible_password }}"
